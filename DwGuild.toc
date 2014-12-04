@@ -1,0 +1,8 @@
+## Interface: 60000
+## Title: DwGuild
+## Author: Downwind
+## Version: 1.0
+## Notes: A collection of utilities for guild leaders made by Downwind, GM of Strength in All on US-Stormrage.
+## SavedVariables: DwGuildConfigValues
+
+DwGuildCode.lua
