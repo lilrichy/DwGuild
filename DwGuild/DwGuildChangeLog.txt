@@ -1,4 +1,7 @@
 DwGuild Change Log
 
+v1.1
+	Fix time bug.
+
 v1.0
-	Initial Release
+	Initial Release.

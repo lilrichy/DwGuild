@@ -89,17 +89,17 @@ local command, rest = msg:match("^(%S*)%s*(.-)$");
 	DwGuildConfigValues.TimerON = false;
 	print(appName.. "Guild MOTD repeating is now OFF.")
 
---Handle Repeat Time.
- elseif command == "time" and rest ~= "" then
-	if rest == 5 then DwGuildConfigValues.Interval = 300 
-	elseif rest == 10 then DwGuildConfigValues.Interval = 600 
-	elseif rest == 15 then DwGuildConfigValues.Interval = 900 
-	elseif rest == 30 then DwGuildConfigValues.Interval = 1800 
-	elseif rest == 60 then DwGuildConfigValues.Interval = 3600 	
+--Handle Repeat rate.
+ elseif command == "rate" and rest ~= "" then
+	if rest == "5" then DwGuildConfigValues.Interval = 300 
+	elseif rest == "10" then DwGuildConfigValues.Interval = 600 
+	elseif rest == "15" then DwGuildConfigValues.Interval = 900 
+	elseif rest == "30" then DwGuildConfigValues.Interval = 1800 
+	elseif rest == "60" then DwGuildConfigValues.Interval = 3600 	
 	else print(appName.. "Valid times are (5|10|15|30|60) minuets");
-		 print("example: /DWGmotd time 60")
+		 print("example: /DWGmotd rate 60")
 	end
-	print(appName.. "Guild MOTD repeater time is set to: ".. SecondsToTime(DwGuildConfigValues.Interval, true));
+	print(appName.. "Guild MOTD repeater rate is set to: ".. SecondsToTime(DwGuildConfigValues.Interval, true));
 
 --If not handled above.
  else 
@@ -109,8 +109,8 @@ local command, rest = msg:match("^(%S*)%s*(.-)$");
 	else 
 		print(appName.. "MOTD repeater is Disabled.") 
 	end
-	print(appName.. "Guild MOTD repeater time is set to: ".. SecondsToTime(DwGuildConfigValues.Interval, true));
-	print("Syntax: /DWGmotd (set | on,off | time) Message of the Day or Interval");
+	print(appName.. "Guild MOTD repeater rate is set to: ".. SecondsToTime(DwGuildConfigValues.Interval, true));
+	print("Syntax: /DWGmotd (set | on,off | rate) Message of the Day or Interval");
  end
 end
 
