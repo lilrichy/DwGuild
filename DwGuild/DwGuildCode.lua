@@ -9,6 +9,8 @@ local noteError = "Requires permission to edit notes";
 local motdInfo = "This command sets the Guild MOTD, turns on and off the repeater, and sets the interval to repeat it.";
 local noteInfo = "This command replaces all guild officer or public notes with a new note.";
 
+local repeatRate
+local wasOn
 
 local DwGuildFrame = CreateFrame("FRAME") DwGuildFrame:Hide()
 DwGuildFrame:RegisterEvent("ADDON_LOADED")
@@ -82,6 +84,7 @@ local command, rest = msg:match("^(%S*)%s*(.-)$");
 --Handle Repeat On.
  elseif command == "on" then
 	DwGuildConfigValues.TimerON = true;
+	repeatRate = DwGuildConfigValues.Interval;
 	print(appName.. "Guild MOTD repeating is now ON.")
 	
 --Handle Repeat Off.
@@ -91,15 +94,25 @@ local command, rest = msg:match("^(%S*)%s*(.-)$");
 
 --Handle Repeat rate.
  elseif command == "rate" and rest ~= "" then
+	if DwGuildConfigValues.TimerON == true then 
+		DwGuildConfigValues.TimerON = false;
+		wasOn = true;	
+	end
+	
 	if rest == "5" then DwGuildConfigValues.Interval = 300 
 	elseif rest == "10" then DwGuildConfigValues.Interval = 600 
 	elseif rest == "15" then DwGuildConfigValues.Interval = 900 
 	elseif rest == "30" then DwGuildConfigValues.Interval = 1800 
-	elseif rest == "60" then DwGuildConfigValues.Interval = 3600 	
-	else print(appName.. "Valid times are (5|10|15|30|60) minuets");
-		 print("example: /DWGmotd rate 60")
+	elseif rest == "60" then DwGuildConfigValues.Interval = 3600 
+	else print(appName.. "Valid rates are 5 10 15 30 or 60");
 	end
+
 	print(appName.. "Guild MOTD repeater rate is set to: ".. SecondsToTime(DwGuildConfigValues.Interval, true));
+	
+	if wasOn then DwGuildConfigValues.TimerON = true;
+		wasOn = false
+	print(appName.. "Repeating was on, restarting Guild MOTD repeater at new rate.");
+	end
 
 --If not handled above.
  else 
@@ -121,7 +134,7 @@ local motd
 local function onUpdate(self,elapsed)
     total = total + elapsed
 	if DwGuildConfigValues.TimerON and CanEditMOTD() then
-		if total >= DwGuildConfigValues.Interval then
+		if total >= repeatRate then
 			motd = GetGuildRosterMOTD();
 			GuildSetMOTD(motd);
 		

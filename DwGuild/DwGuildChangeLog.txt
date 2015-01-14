@@ -1,5 +1,9 @@
 DwGuild Change Log
 
+v1.3
+	Added a check to restart repeater at new rate if rate is entered while repeater is on.
+	Fixed game freeze when entering an invalid rate.
+
 v1.2
 	Fixed naming variables - was causing bugs.
 
