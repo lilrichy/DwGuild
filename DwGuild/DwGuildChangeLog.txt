@@ -1,5 +1,8 @@
 DwGuild Change Log
 
+v1.2
+	Fixed naming variables - was causing bugs.
+
 v1.1
 	Fix time bug.
 

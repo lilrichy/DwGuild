@@ -4,10 +4,10 @@ DwGuild-
 A small collection of commands that are useful for a Guild leader.
 
 --]]
-appName = "|cFF0000FFDwGuild:|r ";
-noteError = "Requires permission to edit notes";
-motdInfo = "This command sets the Guild MOTD, turns on and off the repeater, and sets the interval to repeat it.";
-noteInfo = "This command replaces all guild officer or public notes with a new note.";
+local appName = "|cFF0000FFDwGuild:|r ";
+local noteError = "Requires permission to edit notes";
+local motdInfo = "This command sets the Guild MOTD, turns on and off the repeater, and sets the interval to repeat it.";
+local noteInfo = "This command replaces all guild officer or public notes with a new note.";
 
 
 local DwGuildFrame = CreateFrame("FRAME") DwGuildFrame:Hide()
